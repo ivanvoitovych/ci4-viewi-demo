@@ -5,6 +5,7 @@ namespace Components\Views\Home;
 use Components\Models\PostModel;
 use Viewi\Components\BaseComponent;
 use Viewi\Components\Http\HttpClient;
+use Viewi\Components\Http\Message\Response;
 
 class HomePage extends BaseComponent
 {
@@ -20,8 +21,8 @@ class HomePage extends BaseComponent
     {
         $this->http->get('/api/posts/5')->then(function (PostModel $data) {
             $this->post = $data;
-        }, function ($error) {
-            echo $error;
+        }, function (Response $response) {
+            echo $response->body;
         });
     }
 }

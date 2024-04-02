@@ -5,6 +5,7 @@ namespace Components\Views\Posts;
 use Components\Models\PostModel;
 use Viewi\Components\BaseComponent;
 use Viewi\Components\Http\HttpClient;
+use Viewi\Components\Http\Message\Response;
 
 class PostsPage extends BaseComponent
 {
@@ -20,8 +21,8 @@ class PostsPage extends BaseComponent
     {
         $this->http->get("/api/posts/{$this->postId}")->then(function (PostModel $data) {
             $this->post = $data;
-        }, function ($error) {
-            echo $error;
+        }, function (Response $response) {
+            echo $response->body;
         });
     }
 }
