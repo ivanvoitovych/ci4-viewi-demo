@@ -8,6 +8,7 @@ use CodeIgniter\HTTP\URI;
 use CodeIgniter\HTTP\UserAgent;
 use Viewi\Bridge\DefaultBridge;
 use Viewi\Components\Http\Message\Request;
+use Viewi\Engine;
 
 class ViewiCodeIgniterBridge extends DefaultBridge
 {
@@ -15,10 +16,10 @@ class ViewiCodeIgniterBridge extends DefaultBridge
     {
     }
 
-    public function request(Request $viewiRequest): mixed
+    public function request(Request $viewiRequest, Engine $engine): mixed
     {
         if ($viewiRequest->isExternal) {
-            return parent::request($viewiRequest);
+            return parent::request($viewiRequest, $engine);
         }
 
         /** @var CodeIgniter $app */
